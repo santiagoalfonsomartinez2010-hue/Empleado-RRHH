@@ -1,0 +1,136 @@
+/* ============================================================
+   Estilos globales — Empleado de RRHH IA
+   Misma base visual que el empleado de atención al cliente:
+   fondo muy oscuro, tipografía Inter, scrollbar personalizado
+   y animación pulse del punto verde.
+   ============================================================ */
+
+:root {
+  /* Paleta exacta del producto */
+  --bg: #0B0D14;          /* Fondo muy oscuro */
+  --card: #0F1117;        /* Cards */
+  --border: #1E2130;      /* Bordes */
+  --accent: #6366F1;      /* Acento principal violeta */
+  --green: #10B981;       /* Activo */
+  --yellow: #F59E0B;      /* Alertas */
+  --red: #EF4444;         /* Urgente */
+  --blue: #3B82F6;        /* Vacaciones */
+  --text: #E5E7EB;        /* Texto principal */
+  --text-muted: #8A90A2;  /* Texto secundario */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  /* Sin scroll exterior — el layout es de 3 columnas fijas */
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* ---------- Scrollbar personalizado (idéntico al otro empleado) ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E2130;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2A2E42;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1E2130 transparent;
+}
+
+/* ---------- Animación pulse del punto verde ---------- */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.status-dot--sm {
+  width: 8px;
+  height: 8px;
+}
+
+/* ---------- Animación typing (3 puntos) del chat ---------- */
+@keyframes typingBounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  animation: typingBounce 1.2s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ---------- Transición suave general ---------- */
+button {
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
